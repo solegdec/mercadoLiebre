@@ -1,18 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 3030
+const port = process.env.PORT || 3000
 const path = require('path')
 
 
 
 app.get('/', function(request, response) {
     response.sendFile(path.join(__dirname, 'views/index.html'))
-})
-app.get('/login', function(request, response) {
-    response.sendFile(path.join(__dirname, 'views/login.html'))
-})
-app.get('/registro', function(request, response) {
-    response.sendFile(path.join(__dirname, 'views/registro.html'))
 })
 
 app.use(express.static('public'))
@@ -22,7 +16,6 @@ app.get('*', function(request, response) {
     response.send('NOT FOUND', 404)
 })
 
-app.listen(process.env.PORT ||3030,function() {
-    console.log("servidor corriendo en puerto" +  port)
+app.listen(port, function() {
+    console.log('Servido corriendo en corriendo en el puerto ' + port  );
 })
-
